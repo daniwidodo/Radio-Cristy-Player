@@ -1,0 +1,37 @@
+page-halaman-baca {
+
+    .post-img-bg {
+        width: 100%;
+        filter: grayscale(1);
+        margin: 0;
+
+    }
+
+
+    .post-card-header {
+        padding: 5%;
+        color: orangered;
+        background: black;
+        text-align: center;
+        font-size: 2em;
+        font-weight: bold;
+        width: 100%;
+        height: auto;
+
+    }
+
+    .post-title-header {
+        
+        top: 10%;
+        padding-left: 20%;
+        color: orangered;
+        text-align: center;
+        font-size: 2em;
+        font-weight: bold;
+    }
+
+    .post-card-content {
+        height: auto;
+
+    }
+}

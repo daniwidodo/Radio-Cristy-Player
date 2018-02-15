@@ -1,3 +1,65 @@
 page-home {
+    .hero-home {
+        width: 100%;
+    }
 
+    .hero-bg {
+        background-image: url('../assets/imgs/hero-bg.png');
+        background-repeat: no-repeat;
+        background-size: 100% 100%;
+    }
+
+    .footer-player {
+        //background-image: url('../assets/imgs/player-bg.png');
+        background-color: black;
+        
+    }
+
+    .play-button {
+        width: 3em;
+        height: auto;
+        text-align: center;
+        padding: 0;
+        margin: 0;
+    }
+
+    .stop-button {
+        width: 3em;
+        height: auto;
+        text-align: center;
+    }
+
+    ion-card {
+        position: relative;
+        margin-bottom: 35%;
+    }
+    
+    .text-overlay {
+        position: absolute;
+        bottom: 0;
+        width: 100%;
+        background: rgba(0, 0, 0, .8);
+        background-size: cover;
+    }
+    .card-title {
+        
+        padding-left: 5%;
+        padding-top: 2%;
+        font-size: 2.0em;
+        width: 100%;
+        font-weight: bold;
+        color: #fff;
+        
+        
+      }
+
+      .card-subtitle {
+        
+        padding-left: 5%;
+        font-size: 1em;
+        width: 100%;
+        font-weight: bold;
+        color: rgb(219, 9, 125);
+      }
+      
 }

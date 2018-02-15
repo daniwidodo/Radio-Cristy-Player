@@ -1,14 +1,44 @@
-<ion-header>
-  <ion-navbar>
+<ion-header no-shadow>
+  <ion-navbar class="toolbar" color="dark">
     <ion-title>
-      Ionic Blank
+      Radio Cristy
     </ion-title>
   </ion-navbar>
 </ion-header>
 
-<ion-content padding>
-  The world is your oyster.
-  <p>
-    If you get lost, the <a href="http://ionicframework.com/docs/v2">docs</a> will be your guide.
-  </p>
+<ion-content no-padding class="hero-bg">
+
+  <img class="hero-home"
+  src="assets/imgs/hero-home.png">
+
+  <ion-card no-padding *ngFor="let post of posts" >
+      <img 
+        [src]="post._embedded['wp:featuredmedia'][0].source_url">
+  <div class="text-overlay">
+    <div class="card-title" text-wrap >{{post.title.rendered}}</div>
+    <div class="card-subtitle">{{post.date.split('T')[0]}}</div>
+    <div>
+      <button ion-button full color="dark" (click)="Baca(post)" tappable>Baca Selengkapnya</button>
+    </div>
+  </div>
+    
+  </ion-card>
+
+
 </ion-content>
+
+<ion-footer class="footer-player">
+  <ion-grid >
+    <ion-row style="text-align: center;">
+      <ion-col >
+        <img *ngIf="!showButton" class="play-button" (click)="playStream()"
+        src="assets/imgs/play-button.png">
+        <img *ngIf="showButton" class="stop-button" (click)="stopStream()"
+        src="assets/imgs/stop.png">
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-footer>
+
+
+
