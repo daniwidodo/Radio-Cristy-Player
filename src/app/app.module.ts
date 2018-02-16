@@ -13,6 +13,11 @@ import { HttpClientModule } from '@angular/common/http';
 
 import { HalamanBacaPage } from '../pages/halaman-baca/halaman-baca';
 
+// Plugins
+import { MusicControls } from '@ionic-native/music-controls';
+import { AdMobFree } from '@ionic-native/admob-free';
+import { SocialSharing } from '@ionic-native/social-sharing';
+
 @NgModule({
   declarations: [
     MyApp,
@@ -37,7 +42,10 @@ import { HalamanBacaPage } from '../pages/halaman-baca/halaman-baca';
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     AudioStreamProvider,
     ApiProvider,
-    SafePipe
+    SafePipe,
+    AdMobFree,
+    SocialSharing,
+    MusicControls
   ]
 })
 export class AppModule {}
