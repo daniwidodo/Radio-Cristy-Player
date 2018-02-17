@@ -1,14 +1,12 @@
 import { Component } from '@angular/core';
-import { NavController } from 'ionic-angular';
+import { NavController, LoadingController, /*Platform*/ } from 'ionic-angular';
 import { ApiProvider } from '../../providers/api/api';
 
-// Radio streaming provider
 import { AudioStreamProvider } from '../../providers/audio-stream/audio-stream';
-
 import { HalamanBacaPage } from '../../pages/halaman-baca/halaman-baca';
-
 import { MusicControls } from '@ionic-native/music-controls';
-import { AdMobFree, AdMobFreeBannerConfig } from '@ionic-native/admob-free';
+//import { AdMobFree, AdMobFreeBannerConfig } from '@ionic-native/admob-free';
+//import { AdMobPro } from '@ionic-native/admob-pro';
 
 @Component({
   selector: 'page-home',
@@ -25,19 +23,37 @@ export class HomePage {
     public _player: AudioStreamProvider,
     public _apiProvider: ApiProvider,
     private _musicControls: MusicControls,
-    private _admob: AdMobFree
+    public _loading: LoadingController,
+  // private _admob: AdMobFree,
+  // private admob: AdMobPro, private platform: Platform
   ) {
     this.getPostList();
     this.showButton = false;
-    this.showBannerAd();
+    // this.showBannerAd();
+    this._musicControls.listen();
+    this._musicControls.updateIsPlaying(true);
   }
 
+  /*
+  ionViewWillUnload(){
+    let admobIdBanner;
+    if(this.platform.is('android')) {
+      admobIdBanner = 'ca-app-pub-3473119910769766/6192620839';
+    } else if (this.platform.is('ios')) {
+      admobIdBanner = 'ca-app-pub-3473119910769766/1868919368';
+    }
+    this.admob.prepareInterstitial({adId: admobIdBanner})
+      .then(() => { this.admob.showInterstitial(); });
+  }
+  */
+  
   getPostList() {
     this._apiProvider.getPosts()
-    .then(data => {
+      .then(data => {
       this.posts = data;
       console.log(this.posts);
     });
+    
   }
   
   startMusicControls(){
@@ -134,12 +150,15 @@ export class HomePage {
     console.log('Play Button clicked');
     this.showButton = true;
     this._player.playProvider();
+    this.startMusicControls();
   }
 
   stopStream(){
     console.log('Stop Button');
     this.showButton = false;
     this._player.pauseProvider();
+    this._musicControls.updateIsPlaying(true);
+    
   }
 
   klikBaca(post) {
@@ -150,23 +169,13 @@ export class HomePage {
     );
   }
 
-  async showBannerAd() {
-    try {
-      const bannerConfig: AdMobFreeBannerConfig = {
-        //id: 'your-banner-id-here',
-        id: 'ca-app-pub-3473119910769766/7357690393',
-        isTesting: true,
-        autoShow: true
-      }
+  doRefresh(refresher) {
+    console.log('Begin async operation', refresher);
 
-      this._admob.banner.config(bannerConfig);
-
-      const result = await this._admob.banner.prepare();
-      console.log(result);
-    }
-    catch (e) {
-      console.error(e);
-    }
+    setTimeout(() => {
+      console.log('Async operation has ended');
+      refresher.complete();
+    }, 2000);
   }
 
 }

@@ -15,8 +15,9 @@ import { HalamanBacaPage } from '../pages/halaman-baca/halaman-baca';
 
 // Plugins
 import { MusicControls } from '@ionic-native/music-controls';
-import { AdMobFree } from '@ionic-native/admob-free';
+import { AdMobPro } from '@ionic-native/admob-pro';
 import { SocialSharing } from '@ionic-native/social-sharing';
+import { AdmobproProvider } from '../providers/admobpro/admobpro';
 
 @NgModule({
   declarations: [
@@ -43,9 +44,10 @@ import { SocialSharing } from '@ionic-native/social-sharing';
     AudioStreamProvider,
     ApiProvider,
     SafePipe,
-    AdMobFree,
+    AdMobPro,
     SocialSharing,
-    MusicControls
+    MusicControls,
+    AdmobproProvider
   ]
 })
 export class AppModule {}

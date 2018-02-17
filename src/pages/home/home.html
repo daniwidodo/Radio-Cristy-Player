@@ -11,19 +11,11 @@
   <img class="hero-home"
   src="assets/imgs/hero-home.png">
 
-  <ion-card no-padding *ngFor="let post of posts" >
-      <img 
-        [src]="post._embedded['wp:featuredmedia'][0].source_url">
-  <div class="text-overlay">
-    <div class="card-title" text-wrap >{{post.title.rendered}}</div>
-    <div class="card-subtitle">{{post.date.split('T')[0]}}</div>
-    <div>
-      <button ion-button full color="dark" (click)="klikBaca(post)" tappable>Baca Selengkapnya</button>
-    </div>
+  <div (click)="klikBaca(post)" tappable no-padding *ngFor="let post of posts" class="posts-style">
+        <img class="post-image" [src]="post._embedded['wp:featuredmedia'][0].source_url">
+          <div class="post-title" text-wrap >{{post.title.rendered}}</div>
+          <div class="post-subtitle">{{post.date.split('T')[0]}}</div>
   </div>
-    
-  </ion-card>
-
 
 </ion-content>
 

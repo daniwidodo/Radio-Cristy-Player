@@ -29,37 +29,32 @@ page-home {
         text-align: center;
     }
 
-    ion-card {
-        position: relative;
-        margin-bottom: 35%;
+    .posts-style {
+        background: rgba(0, 0, 0, 0.7);
+        margin-top: 1em;
+        margin-bottom: 2em;
+        padding: 0;
     }
-    
-    .text-overlay {
-        position: absolute;
-        bottom: 0;
-        width: 100%;
-        background: rgba(0, 0, 0, .8);
-        background-size: cover;
-    }
-    .card-title {
-        
-        padding-left: 5%;
-        padding-top: 2%;
-        font-size: 2.0em;
-        width: 100%;
-        font-weight: bold;
-        color: #fff;
-        
-        
-      }
 
-      .card-subtitle {
-        
-        padding-left: 5%;
-        font-size: 1em;
+    .post-image {
         width: 100%;
+        height: auto;
+    }
+
+    .post-title {
+        text-align: left;
+        font-size: 2em;
+        color: whitesmoke;
         font-weight: bold;
-        color: rgb(219, 9, 125);
-      }
+        padding-left: 5%;
+    }
+
+    .post-subtitle {
+        text-align: left;
+        font-size: 1em;
+        color: orangered;
+        padding-left: 5%;
+        padding-bottom: 2%;
+    }
       
 }

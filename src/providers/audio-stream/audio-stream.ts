@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { ToastController } from 'ionic-angular';
 
 @Injectable()
 export class AudioStreamProvider {
@@ -7,7 +8,9 @@ export class AudioStreamProvider {
   stream:any;
   promise:any;
 
-  constructor() {
+  constructor(
+    private _toast: ToastController
+  ) {
     console.log('Hello AudioStreamProvider Provider');
     this.url = "http://188.166.234.48:8000/radiocristy";
     this.stream = new Audio(this.url);
@@ -19,9 +22,14 @@ export class AudioStreamProvider {
       this.stream.addEventListener('playing', () => {
         resolve(true);
       });
- 
       this.stream.addEventListener('error', () => {
         reject(false);
+        let toast = this._toast.create({
+          message: 'Streaming Terputus!',
+          duration: 3000,
+          position: 'middle'
+        });
+        toast.present();
       });
     });
     

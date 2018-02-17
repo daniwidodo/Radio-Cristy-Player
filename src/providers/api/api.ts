@@ -1,25 +1,39 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { LoadingController, ToastController } from 'ionic-angular';
 
-/*
-  Generated class for the ApiProvider provider.
-
-  See https://angular.io/guide/dependency-injection for more info on providers
-  and Angular DI.
-*/
 @Injectable()
 export class ApiProvider {
-    apiUrl = 'http://www.warungsatekamu.org/wp-json/wp/v2';
-  constructor(public http: HttpClient) {
-    console.log('Hello ApiProvider Provider');
-  }
+  posts: any;
+  private  apiUrl = 'http://www.warungsatekamu.org/wp-json/wp/v2';
+  constructor(
+    public http: HttpClient,
+    public _loading: LoadingController,
+    private _toast: ToastController
+  ) {  }
 
-  getPosts() {
+  async getPosts() {
+
+    let loading = this._loading.create({
+      content: 'Sedang Mengambil Data ...'
+    });
+    loading.present();
+
     return new Promise(resolve => {
-      this.http.get(this.apiUrl+'/posts/?_embed').subscribe(data => {
+      this.http.get(this.apiUrl+'/posts/?_embed')
+        .subscribe(data => {
         resolve(data);
+
+        loading.dismiss();
       }, err => {
         console.log(err);
+        loading.dismiss();
+        let toast = this._toast.create({
+          message: 'Tidak terhubung dengan server!',
+          duration: 3000,
+          position: 'middle'
+        });
+        toast.present();
       });
     });
   }
