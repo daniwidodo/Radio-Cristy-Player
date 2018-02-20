@@ -1,4 +1,6 @@
-import { SafePipe } from './../pipes/safe/safe';
+
+import { HalamanBacaPageModule } from './../pages/halaman-baca/halaman-baca.module';
+
 import { BrowserModule } from '@angular/platform-browser';
 import { ErrorHandler, NgModule } from '@angular/core';
 import { IonicApp, IonicErrorHandler, IonicModule } from 'ionic-angular';
@@ -11,7 +13,7 @@ import { AudioStreamProvider } from '../providers/audio-stream/audio-stream';
 import { ApiProvider } from '../providers/api/api';
 import { HttpClientModule } from '@angular/common/http';
 
-import { HalamanBacaPage } from '../pages/halaman-baca/halaman-baca';
+
 
 // Plugins
 import { MusicControls } from '@ionic-native/music-controls';
@@ -22,20 +24,18 @@ import { AdmobproProvider } from '../providers/admobpro/admobpro';
 @NgModule({
   declarations: [
     MyApp,
-    SafePipe,
     HomePage,
-    HalamanBacaPage,
   ],
   imports: [
     BrowserModule,
     HttpClientModule,
-    IonicModule.forRoot(MyApp)
+    IonicModule.forRoot(MyApp),
+    HalamanBacaPageModule,
   ],
   bootstrap: [IonicApp],
   entryComponents: [
     MyApp,
     HomePage,
-    HalamanBacaPage
   ],
   providers: [
     StatusBar,
@@ -43,7 +43,6 @@ import { AdmobproProvider } from '../providers/admobpro/admobpro';
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     AudioStreamProvider,
     ApiProvider,
-    SafePipe,
     AdMobPro,
     SocialSharing,
     MusicControls,

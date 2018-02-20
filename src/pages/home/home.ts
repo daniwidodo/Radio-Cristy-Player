@@ -1,12 +1,11 @@
 import { Component } from '@angular/core';
-import { NavController, LoadingController, /*Platform*/ } from 'ionic-angular';
+import { NavController, LoadingController } from 'ionic-angular';
 import { ApiProvider } from '../../providers/api/api';
 
 import { AudioStreamProvider } from '../../providers/audio-stream/audio-stream';
 import { HalamanBacaPage } from '../../pages/halaman-baca/halaman-baca';
 import { MusicControls } from '@ionic-native/music-controls';
-//import { AdMobFree, AdMobFreeBannerConfig } from '@ionic-native/admob-free';
-//import { AdMobPro } from '@ionic-native/admob-pro';
+import { AdMobPro } from '@ionic-native/admob-pro';
 
 @Component({
   selector: 'page-home',
@@ -14,39 +13,25 @@ import { MusicControls } from '@ionic-native/music-controls';
 })
 export class HomePage {
 
-    showButton : boolean;
-    posts: any;
+  showButton : boolean;
+  posts: any;
     
-
   constructor(
     public _navCtrl: NavController,
     public _player: AudioStreamProvider,
     public _apiProvider: ApiProvider,
     private _musicControls: MusicControls,
     public _loading: LoadingController,
-  // private _admob: AdMobFree,
-  // private admob: AdMobPro, private platform: Platform
   ) {
     this.getPostList();
     this.showButton = false;
-    // this.showBannerAd();
-    this._musicControls.listen();
-    this._musicControls.updateIsPlaying(true);
-  }
-
-  /*
-  ionViewWillUnload(){
-    let admobIdBanner;
-    if(this.platform.is('android')) {
-      admobIdBanner = 'ca-app-pub-3473119910769766/6192620839';
-    } else if (this.platform.is('ios')) {
-      admobIdBanner = 'ca-app-pub-3473119910769766/1868919368';
     }
-    this.admob.prepareInterstitial({adId: admobIdBanner})
-      .then(() => { this.admob.showInterstitial(); });
+
+  ionViewDidEnter(){
+    console.log('enter HomePage');
   }
-  */
   
+
   getPostList() {
     this._apiProvider.getPosts()
       .then(data => {
@@ -70,7 +55,7 @@ export class HomePage {
       // hide previous/next/close buttons:
       hasPrev   : false,      // show previous button, optional, default: true
       hasNext   : false,      // show next button, optional, default: true
-      hasClose  : true,       // show close button, optional, default: false
+      hasClose  : false,       // show close button, optional, default: false
       hasSkipForward : false,  // show skip forward button, optional, default: false
       hasSkipBackward : false, // show skip backward button, optional, default: false
       skipForwardInterval: 0, // display number for skip forward, optional, default: 0
@@ -167,15 +152,6 @@ export class HomePage {
       'post': post
     }
     );
-  }
-
-  doRefresh(refresher) {
-    console.log('Begin async operation', refresher);
-
-    setTimeout(() => {
-      console.log('Async operation has ended');
-      refresher.complete();
-    }, 2000);
   }
 
 }

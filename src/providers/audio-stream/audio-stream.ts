@@ -11,19 +11,28 @@ export class AudioStreamProvider {
   constructor(
     private _toast: ToastController
   ) {
-    console.log('Hello AudioStreamProvider Provider');
+    
     this.url = "http://188.166.234.48:8000/radiocristy";
     this.stream = new Audio(this.url);
   }
 
   playProvider() {
     this.stream.play();
+
+    let toast = this._toast.create({
+      message: 'Loading ...',
+      duration: 2000,
+      position: 'middle'
+    });
+    toast.present();
+
     this.promise = new Promise((resolve,reject) => {
       this.stream.addEventListener('playing', () => {
         resolve(true);
       });
       this.stream.addEventListener('error', () => {
         reject(false);
+
         let toast = this._toast.create({
           message: 'Streaming Terputus!',
           duration: 3000,
