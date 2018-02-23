@@ -1,8 +1,8 @@
 <?xml version='1.0' encoding='utf-8'?>
-<widget id="com.wisdom.studio" version="0.1.0" xmlns="http://www.w3.org/ns/widgets" xmlns:android="http://schemas.android.com/apk/res/android" xmlns:cdv="http://cordova.apache.org/ns/1.0">
+<widget id="com.radiocristy.wisdomstudio" version="0.1.0" xmlns="http://www.w3.org/ns/widgets" xmlns:android="http://schemas.android.com/apk/res/android" xmlns:cdv="http://cordova.apache.org/ns/1.0">
     <name>Radio Cristy</name>
     <description>Aplikasi Streaming Radio Cristy</description>
-    <author email="hi@ionicframework" href="http://ionicframework.com/">Ionic Framework Team</author>
+    <author email="dani.widodo87@gmail.com" href="https://github.com/daniwidodo">Wisdom Studio</author>
     <content src="index.html" />
     <access origin="*" />
     <allow-intent href="http://*/*" />
@@ -87,8 +87,9 @@
     <plugin name="cordova-plugin-music-controls" spec="^2.1.4" />
     <plugin name="cordova-plugin-x-socialsharing" spec="^5.2.1" />
     <plugin name="cordova-plugin-inappbrowser" spec="^2.0.2" />
-    <engine name="ios" spec="~4.5.4" />
     <allow-navigation href="http://192.168.43.203:8100" />
-    <plugin name="cordova-plugin-admobpro" spec="^2.31.1" />
-    <engine name="android" spec="~7.0.0" />
+    <plugin name="lycwed-cordova-plugin-admob-free" spec="git+https://github.com/RenaudROHLINGER/lycwed-cordova-plugin-admob-free.git" />
+    <plugin name="cordova-plugin-admob-free" spec="^0.12.1" />
+    <engine name="ios" spec="4.5.4" />
+    <engine name="android" spec="6.3.0" />
 </widget>

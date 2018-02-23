@@ -1,4 +1,3 @@
-
 import { HalamanBacaPageModule } from './../pages/halaman-baca/halaman-baca.module';
 
 import { BrowserModule } from '@angular/platform-browser';
@@ -13,13 +12,11 @@ import { AudioStreamProvider } from '../providers/audio-stream/audio-stream';
 import { ApiProvider } from '../providers/api/api';
 import { HttpClientModule } from '@angular/common/http';
 
-
-
 // Plugins
 import { MusicControls } from '@ionic-native/music-controls';
-import { AdMobPro } from '@ionic-native/admob-pro';
 import { SocialSharing } from '@ionic-native/social-sharing';
-import { AdmobproProvider } from '../providers/admobpro/admobpro';
+import { AdMobFree } from '@ionic-native/admob-free';
+
 
 @NgModule({
   declarations: [
@@ -43,10 +40,11 @@ import { AdmobproProvider } from '../providers/admobpro/admobpro';
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     AudioStreamProvider,
     ApiProvider,
-    AdMobPro,
     SocialSharing,
     MusicControls,
-    AdmobproProvider
+    AdMobFree
+    
+    
   ]
 })
 export class AppModule {}

@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { Platform } from 'ionic-angular';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
-import { AdMobPro } from '@ionic-native/admob-pro';
+import { AdMobFree, AdMobFreeInterstitialConfig } from '@ionic-native/admob-free';
 
 import { HomePage } from '../pages/home/home';
 @Component({
@@ -15,10 +15,10 @@ export class MyApp {
     private platform: Platform, 
     statusBar: StatusBar, 
     splashScreen: SplashScreen,
-    private admob: AdMobPro,
+    private adMobFree: AdMobFree,
   ) {
     platform.ready().then(() => {
-      // AdmobPro
+      // Admob Free
       let admobid;
         if(this.platform.is('android')) {
           admobid = {
@@ -31,33 +31,32 @@ export class MyApp {
             interstitial: 'ca-app-pub-3473119910769766/1868919368'
           };
         };
-
-    this.admob.createBanner({
-        adId: admobid.banner,
-        isTesting: true,
-        autoShow: true,
-        position: this.admob.AD_POSITION.BOTTOM_CENTER
-    });
-
-    this.admob.prepareInterstitial({
-        adId: admobid.interstitial,
-        isTesting: true,
-        autoShow: false
-    });
       // Okay, so the platform is ready and our plugins are available.
       // Here you can do any higher level native things you might need.
+      this.showInterstitialAd();
       statusBar.styleBlackTranslucent();
       splashScreen.hide();
 
-      this.showInterstitialAd();
     });
   }
 
-  showInterstitialAd() {
-    if (AdMobPro) {
-        this.admob.showInterstitial();
+  async showInterstitialAd() {
+    try {
+      const interstitialConfig: AdMobFreeInterstitialConfig = {
+        id: 'admobid',
+        isTesting: false,
+        autoShow: true
+      }
+
+      this.adMobFree.interstitial.config(interstitialConfig);
+
+      const result = await this.adMobFree.interstitial.prepare();
+      console.log(result);
     }
-}
+    catch (e) {
+      console.error(e)
+    }
+  }
   
 }
 

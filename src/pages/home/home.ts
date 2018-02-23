@@ -5,7 +5,6 @@ import { ApiProvider } from '../../providers/api/api';
 import { AudioStreamProvider } from '../../providers/audio-stream/audio-stream';
 import { HalamanBacaPage } from '../../pages/halaman-baca/halaman-baca';
 import { MusicControls } from '@ionic-native/music-controls';
-import { AdMobPro } from '@ionic-native/admob-pro';
 
 @Component({
   selector: 'page-home',
@@ -148,10 +147,12 @@ export class HomePage {
 
   klikBaca(post) {
     console.log('Baca ...');
-    this._navCtrl.push(HalamanBacaPage, {
-      'post': post
-    }
+    this._navCtrl.push(HalamanBacaPage, { 'post': post }
     );
+  }
+
+  ambilData(){
+    this.getPostList();
   }
 
 }
