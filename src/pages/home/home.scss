@@ -1,12 +1,15 @@
 page-home {
     .hero-home {
         width: 100%;
+        
     }
 
     .hero-bg {
         background-image: url('../assets/imgs/hero-bg.png');
         background-repeat: no-repeat;
         background-size: 100% 100%;
+        filter: blur(15px);
+        position: fixed;
     }
 
     .footer-player {
